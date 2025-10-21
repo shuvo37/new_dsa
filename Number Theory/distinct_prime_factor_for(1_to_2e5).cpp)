@@ -1,0 +1,29 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+const int MAXN = 200000;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    vector<vector<int>> primeFactors(MAXN + 1);
+
+    for (int p = 2; p <= MAXN; ++p) {
+        if (primeFactors[p].empty()) { // p is prime
+            for (int multiple = p; multiple <= MAXN; multiple += p) {
+                primeFactors[multiple].push_back(p);
+            }
+        }
+    }
+
+    // Example output (optional, remove in contests)
+    for (int i = 1; i <= 20; ++i) {
+        cout << i << ": ";
+        for (int p : primeFactors[i]) cout << p << " ";
+        cout << "\n";
+    }
+
+    return 0;
+}
